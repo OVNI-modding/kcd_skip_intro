@@ -1,0 +1,81 @@
+<Graph Description="" Group="SYS_Loading" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="78" Class="UI:Display:Display" pos="1494,-1332,0">
+   <Inputs uiElements_Element="ArtworkLoading" instanceID="-1"/>
+  </Node>
+  <Node Id="94" Class="UI:Util:Platform" pos="1674,-1836,0">
+   <Inputs />
+  </Node>
+  <Node Id="520" Class="UI:Functions:ActionHints:GetActionsButtons" pos="1820,-700,0" flags="0">
+   <Inputs ActionMapName="default" actions="" RequestId=""/>
+  </Node>
+  <Node Id="521" Class="UI:Events:ActionHints:OnSetActionsButtons" pos="1296,-558,0" flags="0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="779" Class="UI:Events:System:OnReadyAfterLoading" pos="1460,-840,0" flags="0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="780" Class="UI:Display:Display" pos="2520,-1060,0">
+   <Inputs uiElements_Element="USMPlayer" instanceID="-1"/>
+  </Node>
+  <Node Id="792" Class="UI:Action:Start" pos="1044,-1260,0">
+   <Inputs UseAsState="1"/>
+  </Node>
+  <Node Id="801" Class="UI:Action:End" pos="3420,-1044,0">
+   <Inputs UseAsState="1" Args=""/>
+  </Node>
+  <Node Id="803" Class="UI:Functions:USMPlayer:LoadingDone" pos="1908,-846,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="815" Class="UI:Functions:ArtworkLoading:PlayLoadingScreen" pos="1980,-1332,0">
+   <Inputs instanceID="-1"/>
+  </Node>
+  <Node Id="816" Class="Input:ActionMaps:ActionFilter" pos="1980,-1188,0">
+   <Inputs actionFilter_Filter="only_loading"/>
+  </Node>
+  <Node Id="830" Class="UI:Action:Control" pos="2430,-684,0">
+   <Inputs uiActions_UIAction="SYS_Main" Strict="0" Args=""/>
+  </Node>
+  <Node Id="841" Class="UI:Events:USMPlayer:OnHelpBarButtonSet" pos="1460,-700,0">
+   <Inputs instanceID="-1" Port="-1" Idx=""/>
+  </Node>
+  <Node Id="842" Class="UI:Functions:USMPlayer:SetHelpBarButtons" pos="1820,-560,0">
+   <Inputs instanceID="-1" Controls=""/>
+  </Node>
+  <Node Id="876" Class="UI:Functions:Game:StartGame" pos="2970,-1026,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="878" Class="UI:Functions:USMPlayer:SetPlatform" pos="1890,-1908,0">
+   <Inputs instanceID="-1" id="1"/>
+  </Node>
+  <Node Id="879" Class="UI:Functions:USMPlayer:SetPlatform" pos="1890,-1818,0">
+   <Inputs instanceID="-1" id="2"/>
+  </Node>
+  <Node Id="880" Class="UI:Functions:USMPlayer:SetPlatform" pos="1890,-1746,0">
+   <Inputs instanceID="-1" id="4"/>
+  </Node>
+  <Node Id="881" Class="UI:Display:Display" pos="2520,-1350,0">
+   <Inputs uiElements_Element="ArtworkLoading" instanceID="-1"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="815" nodeOut="78" portIn="Call" portOut="onShow" enabled="1"/>
+  <Edge nodeIn="816" nodeOut="78" portIn="Enable" portOut="onShow" enabled="1"/>
+  <Edge nodeIn="878" nodeOut="94" portIn="Call" portOut="IsPc" enabled="1"/>
+  <Edge nodeIn="879" nodeOut="94" portIn="Call" portOut="IsXBoxOne" enabled="1"/>
+  <Edge nodeIn="880" nodeOut="94" portIn="Call" portOut="IsPS4" enabled="1"/>
+  <Edge nodeIn="842" nodeOut="521" portIn="Controls" portOut="KeyNames" enabled="1"/>
+  <Edge nodeIn="842" nodeOut="521" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="803" nodeOut="779" portIn="Call" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="876" nodeOut="780" portIn="send" portOut="onUnload" enabled="1"/>
+  <Edge nodeIn="78" nodeOut="792" portIn="show" portOut="StartAction" enabled="1"/>
+  <Edge nodeIn="94" nodeOut="792" portIn="get" portOut="StartAction" enabled="1"/>
+  <Edge nodeIn="780" nodeOut="803" portIn="unload" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="830" nodeOut="803" portIn="Start" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="881" nodeOut="803" portIn="unload" portOut="OnCall" enabled="1"/>
+  <Edge nodeIn="520" nodeOut="841" portIn="actions" portOut="ButtonCodeArr" enabled="1"/>
+  <Edge nodeIn="520" nodeOut="841" portIn="send" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="801" nodeOut="876" portIn="EndAction" portOut="OnEvent" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>
