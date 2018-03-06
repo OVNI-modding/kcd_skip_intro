@@ -1,6 +1,6 @@
 #!/usr/bin/env python3.6
 
-version='1.0.0'
+version='1.1.0'
 name='kcd_skip_intro'
 packagePrefix='zzz_'
 outputDir='builds'

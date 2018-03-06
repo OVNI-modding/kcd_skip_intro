@@ -1,0 +1,102 @@
+<Graph Description="" Group="SYS_Loading" enabled="1" MultiPlayer="ClientServer">
+ <Nodes>
+  <Node Id="204" Class="UI:Functions:SaveLoad:LoadLevel" pos="-2160,306,0" flags="0">
+   <Inputs Level="rataje"/>
+  </Node>
+  <Node Id="649" Class="UI:Functions:SaveLoad:SaveNewGame" pos="170,160,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="682" Class="UI:Functions:MenuEvents:DisplayMainMenu" pos="1380,160,0" flags="0">
+   <Inputs Display="1"/>
+  </Node>
+  <Node Id="739" Class="Time:Calendar" pos="-60,160,0" flags="0">
+   <Inputs Time="0,9,0" Speed="0"/>
+  </Node>
+  <Node Id="741" Class="UI:Events:System:OnGameplayStarted" pos="480,230,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="754" Class="Audio:Trigger" pos="1130,300,0">
+   <Inputs entityId="0" audioTrigger_PlayTrigger="music" audioTrigger_StopTrigger=""/>
+  </Node>
+  <Node Id="792" Class="UI:Action:Start" pos="-2300,160,0">
+   <Inputs UseAsState="1"/>
+  </Node>
+  <Node Id="801" Class="UI:Action:End" pos="2660,160,0">
+   <Inputs UseAsState="1" Args=""/>
+  </Node>
+  <Node Id="837" Class="Image:ScreenFader" pos="-1360,160,0" flags="0">
+   <Inputs FadeGroup="UI:Startup" UseCurColor="0" FadeInTime="0" FadeOutTime="0" color_FadeColor="0,0,0" tex_TextureName="" UpdateAlways="1" FadeAlpha="1" Priority="100" Persistent="0"/>
+  </Node>
+  <Node Id="851" Class="Image:ScreenFader" pos="2340,160,0" flags="0">
+   <Inputs FadeGroup="UI:Startup" UseCurColor="1" FadeInTime="0.5" FadeOutTime="0" color_FadeColor="0,0,0" tex_TextureName="" UpdateAlways="1" FadeAlpha="1" Priority="100" Persistent="0"/>
+  </Node>
+  <Node Id="878" Class="Logic:All" pos="830,160,0" InHideMask="124" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="881" Name="Level_loaded" Class="_commentbox" pos="-1700,61.5116,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="2710" Height="340"/>
+   <NodeSize Width="2710" Height="397.28503"/>
+  </Node>
+  <Node Id="882" Name="Level_loaded_and_Loading_video_finished_(enter_pressed):_show_main_menu" Class="_commentbox" pos="1090,62.275883,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="1750" Height="340"/>
+   <NodeSize Width="1750" Height="397.28503"/>
+  </Node>
+  <Node Id="884" Class="System:ExecuteScript" pos="-1090,160,0" flags="0">
+   <Inputs Script="EnvironmentModule.BlendTimeOfDay(&apos;cloudless_sunny&apos;,0,true); EnvironmentModule.ForceImmediateWeatherUpdate() "/>
+  </Node>
+  <Node Id="885" Class="Image:ColorGradient" pos="-1090,280,0">
+   <Inputs tex_TexturePath="textures/colorcharts/default_cch.dds" TransitionTime="0"/>
+  </Node>
+  <Node Id="886" Class="Logic:Any" pos="-180,160,0" InHideMask="1023" OutHideMask="1">
+   <Inputs />
+  </Node>
+  <Node Id="888" Class="UI:Events:System:OnLoadingComplete" pos="-1680,160,0">
+   <Inputs Port="-1" Idx=""/>
+  </Node>
+  <Node Id="889" Name="Load_level" Class="_commentbox" pos="-2340,61.5116,0">
+   <Inputs TextSize="1" Color="0.27451,0.352941,0.705882" DisplayFilled="1" DisplayBox="1" SortPriority="16"/>
+   <ResizeBorder X="0" Y="0" Width="600" Height="340"/>
+   <NodeSize Width="600" Height="397.28503"/>
+  </Node>
+  <Node Id="890" Class="Time:Delay" pos="1130,160,0">
+   <Inputs delay="0" resetOnInput="0"/>
+  </Node>
+  <Node Id="891" Class="Input:ActionMaps:ActionFilter" pos="2040,160,0">
+   <Inputs actionFilter_Filter="only_loading"/>
+  </Node>
+  <Node Id="892" Class="Input:ActionMaps:ActionMap" pos="1728,288,0">
+   <Inputs entityId="0" Except="0" actionMaps_ActionMap="loading"/>
+  </Node>
+  <Node Id="893" Class="UI:Functions:MenuEvents:PrepareMainMenu" pos="480,160,0" flags="0">
+   <Inputs />
+  </Node>
+  <Node Id="900" Class="Debug:ConsoleVariable" pos="-1962,-72,0">
+   <Inputs CVar="wh_sys_HideIntroVideo" Value="1"/>
+  </Node>
+ </Nodes>
+ <Edges>
+  <Edge nodeIn="893" nodeOut="649" portIn="send" portOut="OnEvent" enabled="1"/>
+  <Edge nodeIn="892" nodeOut="682" portIn="Disable" portOut="OnEvent" enabled="1"/>
+  <Edge nodeIn="649" nodeOut="739" portIn="send" portOut="CurTime" enabled="1"/>
+  <Edge nodeIn="878" nodeOut="741" portIn="in2" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="204" nodeOut="792" portIn="send" portOut="StartAction" enabled="1"/>
+  <Edge nodeIn="900" nodeOut="792" portIn="Set" portOut="StartAction" enabled="1"/>
+  <Edge nodeIn="884" nodeOut="837" portIn="Call" portOut="FadedOut" enabled="1"/>
+  <Edge nodeIn="885" nodeOut="837" portIn="Trigger" portOut="FadedOut" enabled="1"/>
+  <Edge nodeIn="801" nodeOut="851" portIn="EndAction" portOut="FadedIn" enabled="1"/>
+  <Edge nodeIn="754" nodeOut="878" portIn="Play" portOut="Out" enabled="1"/>
+  <Edge nodeIn="890" nodeOut="878" portIn="in" portOut="Out" enabled="1"/>
+  <Edge nodeIn="886" nodeOut="884" portIn="in2" portOut="Failed" enabled="1"/>
+  <Edge nodeIn="886" nodeOut="884" portIn="in1" portOut="Success" enabled="1"/>
+  <Edge nodeIn="739" nodeOut="886" portIn="Set" portOut="out" enabled="1"/>
+  <Edge nodeIn="739" nodeOut="886" portIn="SetSpeed" portOut="out" enabled="1"/>
+  <Edge nodeIn="837" nodeOut="888" portIn="FadeOut" portOut="onEvent" enabled="1"/>
+  <Edge nodeIn="682" nodeOut="890" portIn="send" portOut="out" enabled="1"/>
+  <Edge nodeIn="851" nodeOut="891" portIn="FadeIn" portOut="Disabled" enabled="1"/>
+  <Edge nodeIn="891" nodeOut="892" portIn="Disable" portOut="Disabled" enabled="1"/>
+  <Edge nodeIn="878" nodeOut="893" portIn="in1" portOut="OnEvent" enabled="1"/>
+ </Edges>
+ <GraphTokens />
+</Graph>
